@@ -1,5 +1,5 @@
 import "./styles.css";
-import Character from "./Character/Character";
+import Character from "./Character";
 
 export default function App() {
   return (
