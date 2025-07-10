@@ -1,7 +1,12 @@
 import "./styles.css";
-
+import { getRandomHexColor } from "./utils";
 const Character = () => {
-  return <h2 className="Character">Character</h2>;
+  const randomColor = getRandomHexColor();
+  return (
+    <h2 className="Character" style={{ backgroundColor: randomColor }}>
+      Character
+    </h2>
+  );
 };
 
 export default Character;
