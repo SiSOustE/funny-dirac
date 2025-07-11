@@ -1,6 +1,6 @@
 import { useState } from "react";
 import "./styles.css";
-import { getRandomHexColor } from "./utils";
+import { getRandomHexColor, getRandomElementOfArray } from "./utils";
 import { API_URL } from "./consts";
 const Character = () => {
   const [character, setCharacter] = useState({ name: "Undefined" });
@@ -9,18 +9,20 @@ const Character = () => {
     fetch(API_URL)
       .then((response) => response.json())
       .then((data) => {
-        // data processing
+        const characters = data.results;
+        const randomCharacter = getRandomElementOfArray(characters);
+        setCharacter({ name: randomCharacter.name });
       });
 
     console.log("getRandomCharacterHandler");
   };
   return (
-    <div>
+    <>
       <h2 className="Character" style={{ backgroundColor: randomColor }}>
         Character: {character.name}
       </h2>
       <button onclick={getRandomCharacterHandler}>Get Random Character</button>
-    </div>
+    </>
   );
 };
 
