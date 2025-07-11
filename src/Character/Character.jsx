@@ -21,7 +21,7 @@ const Character = () => {
       <h2 className="Character" style={{ backgroundColor: randomColor }}>
         Character: {character.name}
       </h2>
-      <button onclick={getRandomCharacterHandler}>Get Random Character</button>
+      <button onClick={getRandomCharacterHandler}>Get Random Character</button>
     </>
   );
 };
