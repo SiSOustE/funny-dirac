@@ -1,10 +1,22 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import "./styles.css";
 import { getRandomHexColor, getRandomElementOfArray } from "./utils";
 import { API_URL } from "./consts";
 const Character = () => {
   const [character, setCharacter] = useState({ name: "Undefined" });
   const randomColor = getRandomHexColor();
+
+  useEffect(() => {
+    console.log("Component: Mount");
+    return () => {
+      console.log("Component: Unount");
+    };
+  }, []);
+
+  useEffect(() => {
+    console.log("Component: Render");
+  });
+
   const getRandomCharacterHandler = () => {
     fetch(API_URL)
       .then((response) => response.json())
