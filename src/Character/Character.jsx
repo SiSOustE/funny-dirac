@@ -8,8 +8,15 @@ const Character = () => {
 
   useEffect(() => {
     console.log("Component: Mount");
+    getRandomCharacter();
+
+    setInterval(() => {
+      console.log("setInterval");
+      getRandomCharacter();
+    }, 3000);
+
     return () => {
-      console.log("Component: Unount");
+      console.log("Component: Unmount");
     };
   }, []);
 
@@ -17,7 +24,7 @@ const Character = () => {
     console.log("Component: Render");
   });
 
-  const getRandomCharacterHandler = () => {
+  const getRandomCharacter = () => {
     fetch(API_URL)
       .then((response) => response.json())
       .then((data) => {
@@ -25,7 +32,9 @@ const Character = () => {
         const randomCharacter = getRandomElementOfArray(characters);
         setCharacter({ name: randomCharacter.name });
       });
-
+  };
+  const getRandomCharacterHandler = () => {
+    getRandomCharacter();
     console.log("getRandomCharacterHandler");
   };
   return (
