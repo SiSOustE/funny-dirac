@@ -2,10 +2,20 @@ import { useEffect, useRef, useState } from "react";
 import "./styles.css";
 import { getRandomHexColor, getRandomElementOfArray } from "./utils";
 import { API_URL } from "./consts";
+
 const Character = () => {
+  const [visibility, setVisibility] = useState(true);
+
+  if (!visibility) {
+    return null;
+  }
+
+  return <CharacterContent setVisibility={setVisibility} />;
+};
+
+const CharacterContent = ({ setVisibility }) => {
   const intervalRef = useRef(undefined);
   const [character, setCharacter] = useState({ name: "Undefined" });
-  const [visibility, setVisibility] = useState(true);
   const randomColor = getRandomHexColor();
 
   useEffect(() => {
@@ -44,10 +54,6 @@ const Character = () => {
   const hideComponentHandler = () => {
     setVisibility(false);
   };
-
-  if (!visibility) {
-    return null;
-  }
 
   return (
     <>
